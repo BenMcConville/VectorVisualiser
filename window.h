@@ -72,6 +72,8 @@ void close_x() {
 
 void redraw() {
 	XClearWindow(dis, win);
+	//rect(0,0,screenWidth,screenHeight);
+	printf("Cleared Window");
 };
 void displaySetUp(int width, int height)	{
 	screenHeight	= height;
@@ -99,6 +101,7 @@ void get_colors() {
 void rect(float x1, float y1, float width, float height)	{
 	XFillRectangle(dis, win, gc, x1+(screenWidth/2), (((y1*-1)+screenHeight/2))-height, width, height);
 }
+
 void line(float x1, float y1, float x2, float y2)	{
 	XDrawLine(dis, win, gc, x1+(screenWidth/2),(y1*-1)+(screenHeight/2), x2+(screenWidth/2),(y2*-1)+(screenHeight/2));	
 }
@@ -106,8 +109,8 @@ void rotate()	{
 	axisRotation += 0.1;
 }
 void twoDAxis()	{
-	float axisYPos =	screenHeight/2 * (sin(axisRotation)); 
-	float axisXPos =	screenHeight/2 * (cos(axisRotation)); 
+	float axisYPos = screenHeight * (cos(axisRotation)); 
+	float axisXPos = screenWidth  * (sin(axisRotation)); 
 	line(-1*axisXPos,axisYPos,axisXPos,-1*(axisYPos));
 	line(screenWidth/2,0,-1*(screenWidth/2),0);
 }
